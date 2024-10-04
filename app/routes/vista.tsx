@@ -1,7 +1,7 @@
 import { useLoaderData, useParams } from "@remix-run/react";
 import NavbarComponent from "~/components/Navbar";
-import { json} from "@remix-run/react";
-import type { LoaderFunctionArgs} from "@remix-run/node";
+import { json } from "@remix-run/react";
+import type { LoaderFunctionArgs } from "@remix-run/node";
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {
     const { idVista, idMenu } = params;
@@ -28,29 +28,29 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
     }
 };
 
+interface MenuItem {
+    Title: string;
+}
+
+interface Data {
+    Title: string;
+    MenuItems: MenuItem[];
+}
+
 export default function templeteBasic() {
     const { idVista, idMenu } = useParams();
-    const {data} = useLoaderData();
+    const { data } = useLoaderData<{ data: Data }>();
 
     return (
         <div className="container-fluid">
-            <NavbarComponent  />
+            <NavbarComponent title={data.Title} list={data.MenuItems} />
             <div className="row">
                 <div className="col">
                     Recibi este idVista : {idVista || "vacio"}
                     Recivi este idMenu : {idMenu || "vacio"}
                 </div>
             </div>
-            <div className="row">
-                <div className="col">
-                    <h3> {data.Title} </h3>
-                    <pre>
-                        {data.MenuItems.map((item, index)=>(
-                            <p key={`menu-${index}`} > {item.Title} </p>
-                        ))}
-                    </pre>
-                </div>
-            </div>
+
         </div>
     );
 }

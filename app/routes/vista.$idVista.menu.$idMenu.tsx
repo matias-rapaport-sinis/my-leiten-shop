@@ -17,6 +17,7 @@ export default function templeteBasic() {
                 <div className="col">
                     Recibi este idVista : {idVista || "vacio"}
                     Recivi este idMenu : {idMenu || "vacio"}
+                    ACA GUACHO
                 </div>
             </div>
         </div>
