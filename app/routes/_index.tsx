@@ -1,6 +1,5 @@
 import type { MetaFunction } from "@remix-run/node";
-import { useParams } from "@remix-run/react";
-
+import { Link } from "@remix-run/react";
 export const meta: MetaFunction = () => {
   return [
     { title: "New Remix App" },
@@ -9,16 +8,12 @@ export const meta: MetaFunction = () => {
 };
 
 export default function Index() {
-  const {idVista, idMenu} = useParams();
   
   return (
     <div className="container">
       <div className="row">
         <div className="col">
-            Recibi este idVista : {idVista || "vacio"}
-        </div>
-        <div className="col">
-            Recivi este idMenu : {idMenu || "vacio"}
+            Debes ir a <Link to="vista/2/menu/4"> Vamos al template </Link>
         </div>
       </div>
     </div>
