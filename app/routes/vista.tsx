@@ -13,7 +13,7 @@ export default function templeteBasic() {
 
     return (
         <div className="container-fluid">
-            
+            alo
             <div className="row" >
                 <div className="col">
                     <Outlet />

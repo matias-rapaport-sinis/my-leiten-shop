@@ -1,5 +1,5 @@
 import { LoaderFunctionArgs } from "@remix-run/node";
-import { json, useLoaderData, useParams } from "@remix-run/react";
+import { json, Link, Outlet, useLoaderData, useParams } from "@remix-run/react";
 import NavbarComponent from "~/components/Navbar";
 
 type Data = {
@@ -32,13 +32,27 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
     }
 };
 
+
+
+interface MenuItem {
+    Title: string;
+    MenuItems?: { Title: string }[];
+}
+
+
+
 export default function NavbarVista() {
     const { data } = useLoaderData<{ data: Data }>();
 
     return (
         <div>
             <NavbarComponent title={data.Title} list={data.MenuItems} />
-            <h1>Hello World {data.Title} </h1>
+            <div className="container-fluid">
+            <Link className="dropdown-item" to={`filtros/1`}>ACACAC</Link>
+                <div className="row">
+                    <Outlet />
+                </div>
+            </div>
         </div>
     );
 }

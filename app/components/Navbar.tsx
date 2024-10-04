@@ -1,3 +1,4 @@
+import { Link } from "@remix-run/react";
 
 
 interface MenuItem {
@@ -8,12 +9,12 @@ interface MenuItem {
 const DropdownMenuItem = ({ item, index }: { item: MenuItem, index: number }) => {
     return (
         <li className="nav-item dropdown" key={`menuDropDown-${index}`}>
-            <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <label className="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 {item.Title}
-            </a>
+            </label>
             <ul className="dropdown-menu">
                 {item.MenuItems?.map((subItem: { Title: string }, subIndex: number) => (
-                    <li key={`submenu-${subIndex}`}><a className="dropdown-item" href="#">{subItem.Title}</a></li>
+                    <li key={`submenu-${subIndex}`}><Link className="dropdown-item" to={`filtros/${subItem.id}`}>{subItem.Title}</Link></li>
                 ))}
             </ul>
         </li>
