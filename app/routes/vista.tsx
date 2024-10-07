@@ -1,4 +1,4 @@
-import { Outlet } from "@remix-run/react";
+/* import { Outlet } from "@remix-run/react";
 
 interface MenuItem {
     Title: string;
@@ -23,3 +23,4 @@ export default function templeteBasic() {
         </div>
     );
 }
+ */

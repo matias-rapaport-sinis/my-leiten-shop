@@ -1,7 +1,7 @@
 import { useNavigate } from "@remix-run/react"
 
 
-export default function SeleccionUnica({ nombre, opciones }) {
+export default function SeleccionUnica({ nombre, opciones, index }) {
     const navigate = useNavigate();
 
     const handleOnChange = (valor) => {
@@ -9,7 +9,7 @@ export default function SeleccionUnica({ nombre, opciones }) {
     }
 
     return (
-        <div className="container">
+        <div className="container" key={`seleccionUnica-${index}`}>
             <div className="row">
                 <div className="col">
                     <h4>{nombre}</h4>
@@ -18,8 +18,8 @@ export default function SeleccionUnica({ nombre, opciones }) {
             <div className="row">
                 <div className="col d-flex flex-column" >
                     {opciones["$values"].map((valor, index) => (
-                        <label>
-                            <input type="radio" onChange={()=>(handleOnChange(valor.texto))} name={`grupo-${opciones["$id"]}`} value={valor.texto} />
+                        <label key={`${nombre}-${index}`}>
+                            <input type="radio"  onChange={()=>(handleOnChange(valor.texto))} name={`grupo-${opciones["$id"]}`} value={valor.texto} />
                             {valor.texto}
                         </label>
                     ))}

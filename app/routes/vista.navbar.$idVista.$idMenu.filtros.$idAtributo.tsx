@@ -1,4 +1,4 @@
-import { LoaderFunctionArgs } from "@remix-run/node";
+/* import { LoaderFunctionArgs } from "@remix-run/node";
 import { json, Outlet, useLoaderData } from "@remix-run/react";
 import SeleccionMultiple from "~/components/SeleccionMultiple";
 import SeleccionUnica from "~/components/SeleccionUnica";
@@ -56,4 +56,4 @@ export default function NavbarVista() {
             </div>
         </div>
     );
-}
+} */

@@ -1,14 +1,6 @@
-import { json, LoaderFunction, LoaderFunctionArgs } from "@remix-run/node";
-import { Outlet, useLoaderData } from "@remix-run/react";
-// import NavbarBaseComponent from "~/components/NavbarBase";
-import { getMenuLoader } from "~/loaders/getMenuLoader";
-type Data = {
-    Title: string;
-    MenuItems: Array<{ id: number; name: string; }>;
-};
+import { json, LoaderFunctionArgs } from "@remix-run/node";
 
-
-export const loader = getMenuLoader;  /* = async ({ params }: LoaderFunctionArgs) => {
+export const getMenuLoader = async ({ params }: LoaderFunctionArgs) => {
     const { idVista, idMenu } = params;
 
     try {
@@ -31,16 +23,4 @@ export const loader = getMenuLoader;  /* = async ({ params }: LoaderFunctionArgs
         console.error('Error fetching URL:', error);
         return json({ error: 'Failed to fetch data' }, { status: 500 });
     }
-}; */
-
-
-export default function TemplateBaseUNo(){
-    const { data } = useLoaderData<{ data: Data }>();
-
-    return (
-        <div>
-            {/* <NavbarBaseComponent title={data.Title} list={data.MenuItems} /> */}
-            <Outlet />
-        </div>
-    );
 };

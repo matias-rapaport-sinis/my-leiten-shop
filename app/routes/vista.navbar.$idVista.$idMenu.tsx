@@ -1,4 +1,4 @@
-import { LoaderFunctionArgs } from "@remix-run/node";
+/* import { LoaderFunctionArgs } from "@remix-run/node";
 import { json, Link, Outlet, useLoaderData, useParams } from "@remix-run/react";
 import NavbarComponent from "~/components/Navbar";
 
@@ -55,4 +55,4 @@ export default function NavbarVista() {
             </div>
         </div>
     );
-}
+} */

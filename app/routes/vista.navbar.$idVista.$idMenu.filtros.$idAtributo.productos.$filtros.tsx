@@ -1,4 +1,4 @@
-import { LoaderFunctionArgs } from "@remix-run/node";
+/* import { LoaderFunctionArgs } from "@remix-run/node";
 import { json, Outlet, useLoaderData } from "@remix-run/react";
 import SeleccionMultiple from "~/components/SeleccionMultiple";
 import SeleccionUnica from "~/components/SeleccionUnica";
@@ -28,7 +28,7 @@ import SeleccionUnica from "~/components/SeleccionUnica";
         return json({ error: 'Failed to fetch data' }, { status: 500 });
     }
 };
- */
+ *//*
 export default function NavbarVista() {
     // const { data} = useLoaderData<{ data }>();
 
@@ -41,4 +41,4 @@ export default function NavbarVista() {
             </div>
         </div>
     );
-}
+} */
