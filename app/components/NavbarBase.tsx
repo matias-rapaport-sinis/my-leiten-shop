@@ -1,6 +1,5 @@
 import { Link } from "@remix-run/react";
 
-
 interface MenuItem {
     Title: string;
     MenuItems?: { Title: string }[];

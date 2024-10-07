@@ -4,7 +4,6 @@ import { getImageLoader } from "./getImageLoader";
 export const getProductsLoader = async ({ params }: LoaderFunctionArgs) => {
 
     const { idVista, idMenu, idProduct, filters } = params;
-    console.log(idVista, idMenu, idProduct, filters);
     
     const arrayFilter = JSON.stringify([{
         "key": "string",
@@ -27,7 +26,6 @@ export const getProductsLoader = async ({ params }: LoaderFunctionArgs) => {
         }
 
         const products = await response.json();
-        console.log(products);
         // Second fetch to get images for each product
         const productsWithImages = await Promise.all(products['$values'].map(async (product: { id: string }) => (getImageLoader(product))));
         return json({ data: productsWithImages });

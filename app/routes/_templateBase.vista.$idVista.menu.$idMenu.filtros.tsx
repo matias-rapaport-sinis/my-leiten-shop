@@ -1,6 +1,6 @@
-import { json, LoaderFunction, LoaderFunctionArgs } from "@remix-run/node";
 import { Outlet, useLoaderData, useNavigate, useParams } from "@remix-run/react";
 import { useState } from "react";
+import SeleccionDeRango from "~/components/SeleccionDeRango";
 import SeleccionMultiple from "~/components/SeleccionMultiple";
 import SeleccionUnica from "~/components/SeleccionUnica";
 import { getAtributosLoader } from "~/loaders/getAtributosLoader";
@@ -63,7 +63,14 @@ export default function Temple(){
                                 handleChangeRemove={handleChangeRemove}
                                 />
                             :
-                            <p key={index}>{item.accion}</p>
+                            <SeleccionDeRango 
+                                key={`seleccionDeRango-${index}`} 
+                                index={index} 
+                                nombre={item["nombre"]} 
+                                opciones={item["opciones"]} 
+                                handleChangeAdd={handleChangeAdd}
+                                handleChangeRemove={handleChangeRemove}
+                                />
                         )
                     ))}
                 </div>
