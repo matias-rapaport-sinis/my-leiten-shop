@@ -7,15 +7,15 @@ export default function SeleccionDeRango({ nombre, opciones, index, handleChange
     const [minValue, setMinValue] = useState(0);
 
     const handleOnChangeMaxValue = (e, keySelected) => {
+        setMaxValue(e.target.value);
         handleChangeRemove(keySelected);
         handleChangeAdd({ key: keySelected, value: e.target.value });
-        setMaxValue(e.target.value);
     }
 
     const handleOnChangeMinValue = (e, keySelected) => {
+        setMinValue(e.target.value);
         handleChangeRemove(keySelected);
         handleChangeAdd({ key: keySelected, value: e.target.value });
-        setMinValue(e.target.value);
     }
 
 
@@ -36,7 +36,7 @@ export default function SeleccionDeRango({ nombre, opciones, index, handleChange
                             min="0"
                             max={maxValue}
                             step="1"
-                            id="customRange3"
+                            id="customRange2"
                             onChange={(e) => (handleOnChangeMinValue(e, opciones["$values"][1].id))}
                         />
                     </label>

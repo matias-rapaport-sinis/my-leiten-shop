@@ -20,7 +20,7 @@ export const getMenuLoader = async ({ params }: LoaderFunctionArgs) => {
         const data = await response.json();
         const menuList = data.MenuItems;
         
-        const menuWithImages = await Promise.all(menuList.map(async (item) => {
+        const menuWithImages = await Promise.all(menuList.map(async (item: { id: string; MenuItems?: any[] }) => {
             if (item.hasOwnProperty('MenuItems')) {
                 item.MenuItems = await Promise.all(item.MenuItems.map(async (subItem) => {
                     const image = await getImageLoader({ id: subItem.id });

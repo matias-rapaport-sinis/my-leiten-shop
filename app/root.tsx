@@ -2,10 +2,11 @@ import {
   Links,
   Meta,
   Outlet,
+  redirect,
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
-import type { LinksFunction } from "@remix-run/node";
+import type { LinksFunction, LoaderFunction } from "@remix-run/node";
 
 
 export const links: LinksFunction = () => [
@@ -45,6 +46,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
     </html>
   );
 }
+
+
+
 
 export default function App() {
   return <Outlet />;
