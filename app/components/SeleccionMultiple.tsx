@@ -10,7 +10,7 @@ export default function SeleccionMultiple({ nombre, opciones, index, handleChang
         if (isChecked === true) {
             handleChangeAdd({key: keySelected, value: valueSelected});
         } else {
-            handleChangeRemove(keySelected, valueSelected);
+            handleChangeRemove(keySelected);
         }
     };
 

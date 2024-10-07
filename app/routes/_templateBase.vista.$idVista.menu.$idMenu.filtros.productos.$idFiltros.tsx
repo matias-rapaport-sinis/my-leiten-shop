@@ -11,6 +11,7 @@ export default function Filtros() {
 
     return (
         <div className="container">
+            <h1>{idFiltros}</h1>
             <div className="row row-cols-1 row-cols-md-3 g-4">
                 {data.map((item, index) => (
                     <div className="col" key={`productCard-${index}`}>

@@ -3,8 +3,10 @@ import { getImageLoader } from "./getImageLoader";
 
 export const getProductsLoader = async ({ params }: LoaderFunctionArgs) => {
 
-    const { idVista, idMenu } = params;
+    const { idVista, idMenu, idFiltros } = params;
+    console.log(idVista, idMenu, idFiltros);
 
+    
     const arrayFilter = [{
         "key": "string",
         "value": "string"
@@ -17,7 +19,7 @@ export const getProductsLoader = async ({ params }: LoaderFunctionArgs) => {
                 'Content-Type': 'application/json',
                 'Authorization': '12345'
             },
-            body: JSON.stringify(arrayFilter)
+            body: idFiltros
         });
 
         if (!response.ok) {
@@ -28,7 +30,6 @@ export const getProductsLoader = async ({ params }: LoaderFunctionArgs) => {
         
         // Second fetch to get images for each product
         const productsWithImages = await Promise.all(products['$values'].map(async (product: { id: string }) => (getImageLoader(product))));
-        
         return json({ data: productsWithImages });
 
     } catch (error) {

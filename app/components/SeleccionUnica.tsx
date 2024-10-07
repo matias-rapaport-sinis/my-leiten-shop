@@ -1,11 +1,12 @@
 import { useNavigate } from "@remix-run/react"
 
 
-export default function SeleccionUnica({ nombre, opciones, index }) {
+export default function SeleccionUnica({ nombre, opciones, index, handleChangeAdd, handleChangeRemove }) {
     const navigate = useNavigate();
 
     const handleOnChange = (valor) => {
-        navigate(`productos/${valor}`)
+        //handleChangeAdd({key: , value: valor});
+        // navigate(`productos/${valor}`)
     }
 
     return (
