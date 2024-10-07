@@ -1,16 +1,16 @@
 
 import  { useState } from 'react';
 
-export default function SeleccionMultiple({ nombre, opciones, index }) {
+export default function SeleccionMultiple({ nombre, opciones, index, handleChangeAdd, handleChangeRemove }) {
     
     const [options, setOptions] = useState([]);
 
     const handleChange = (e, keySelected, valueSelected) => {
         const isChecked = e.target.checked;
-        if (isChecked === false) {
-            setOptions(options.filter(({key, value}) => key !== keySelected && value !== valueSelected));
+        if (isChecked === true) {
+            handleChangeAdd({key: keySelected, value: valueSelected});
         } else {
-            setOptions([...options, {key: keySelected, value: valueSelected}]);
+            handleChangeRemove(keySelected, valueSelected);
         }
     };
 
@@ -25,7 +25,11 @@ export default function SeleccionMultiple({ nombre, opciones, index }) {
                 <div className="col d-flex flex-column" >
                     {opciones["$values"].map((valor, index) => (
                         <label key={`seleccionMultiple-${index}-${index}`}>
-                            <input type="checkbox"   value={valor.texto} name="1" onChange={(e)=>{handleChange(e, valor.id, valor.texto)}} />
+                            <input 
+                                type="checkbox" 
+                                value={valor.texto} 
+                                name="1" 
+                                onChange={(e)=>{handleChange(e, valor.id, valor.texto)}} />
                             {valor.texto}
                         </label>
                     ))}

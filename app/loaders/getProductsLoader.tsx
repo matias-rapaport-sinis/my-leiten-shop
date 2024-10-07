@@ -10,7 +10,6 @@ export const getProductsLoader = async ({ params }: LoaderFunctionArgs) => {
         "value": "string"
     }]
 
-    console.log(idVista, idMenu);
     try {
         const response = await fetch(`https://apptesting.leiten.dnscheck.com.ar/ContentSettings/GetProductos?IdVista=${idVista}`, {
             method: "POST",
