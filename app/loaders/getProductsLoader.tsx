@@ -3,14 +3,14 @@ import { getImageLoader } from "./getImageLoader";
 
 export const getProductsLoader = async ({ params }: LoaderFunctionArgs) => {
 
-    const { idVista, idMenu, idFiltros } = params;
-    console.log(idVista, idMenu, idFiltros);
-
+    const { idVista, idMenu, idProduct, filters } = params;
+    console.log(idVista, idMenu, idProduct, filters);
     
-    const arrayFilter = [{
+    const arrayFilter = JSON.stringify([{
         "key": "string",
         "value": "string"
-    }]
+    }])
+
 
     try {
         const response = await fetch(`https://apptesting.leiten.dnscheck.com.ar/ContentSettings/GetProductos?IdVista=${idVista}`, {
@@ -19,7 +19,7 @@ export const getProductsLoader = async ({ params }: LoaderFunctionArgs) => {
                 'Content-Type': 'application/json',
                 'Authorization': '12345'
             },
-            body: idFiltros
+            body: filters === "null" ?  arrayFilter : filters
         });
 
         if (!response.ok) {
@@ -27,7 +27,7 @@ export const getProductsLoader = async ({ params }: LoaderFunctionArgs) => {
         }
 
         const products = await response.json();
-        
+        console.log(products);
         // Second fetch to get images for each product
         const productsWithImages = await Promise.all(products['$values'].map(async (product: { id: string }) => (getImageLoader(product))));
         return json({ data: productsWithImages });

@@ -9,14 +9,14 @@ export const loader = getAtributosLoader;
 
 export default function Temple(){
     const { data } = useLoaderData<{ data }>();
-    const {idVista, idMenu, idFiltros} = useParams();
+    const {idVista, idMenu, idProduct, filters} = useParams();
     const [filterSelected, setFilterSelected] = useState<{ key: string, value: any }[]>([]);
     const navigate = useNavigate();
 
 
     const updateNavigation = (filters: { key: string, value: any }[]) => {
         const listOfFiltros = JSON.stringify(filters); 
-        navigate(`productos/${listOfFiltros}`);
+        navigate(`productos/${idProduct}/${listOfFiltros}`);
     };
 
     const handleChangeAdd = (filtros: { key: string, value: any }) => {

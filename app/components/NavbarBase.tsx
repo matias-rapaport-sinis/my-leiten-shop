@@ -16,7 +16,7 @@ const DropdownMenuItem = ({ item, index }: { item: MenuItem, index: number }) =>
                 {item.MenuItems?.map((subItem, subIndex: number) => (
                     <li key={`dropDownMenu-${index}-${subIndex}`}>
                         <img src={subItem.image.image} className="img-thumbnail" alt="..." />
-                        <Link className="dropdown-item" to={`filtros/productos/${subItem.id}`}>{subItem.Title}</Link>
+                        <Link className="dropdown-item" to={`filtros/productos/${subItem.id}/${null}`}>{subItem.Title}</Link>
                     </li>
                 ))}
             </ul>
@@ -27,7 +27,7 @@ const DropdownMenuItem = ({ item, index }: { item: MenuItem, index: number }) =>
 const MenuItem = ({ item, index }: { item: MenuItem, index: number }) => {
     return (
         <li className="nav-item" key={`itemMenu-${index}`}>
-            <Link className="nav-link" to={`filtros/productos/${item.id}`}>{item.Title}</Link>
+            <Link className="nav-link" to={`filtros/productos/${item.id}/${null}`}>{item.Title}</Link>
         </li>
     )
 }
