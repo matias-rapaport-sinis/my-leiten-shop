@@ -1,4 +1,5 @@
 import { json, LoaderFunctionArgs } from "@remix-run/node";
+import { getImageLoader } from "./getImageLoader";
 
 export const getMenuLoader = async ({ params }: LoaderFunctionArgs) => {
     const { idVista, idMenu } = params;
@@ -17,8 +18,31 @@ export const getMenuLoader = async ({ params }: LoaderFunctionArgs) => {
         }
 
         const data = await response.json();
+        const menuList = data.MenuItems;
+        console.log(menuList);
+        
+        const menuWithImages = await Promise.all(menuList.map(async (item) => {
+            if (item.hasOwnProperty('MenuItems')) {
+                item.MenuItems = await Promise.all(item.MenuItems.map(async (subItem) => {
+                    const image = await getImageLoader({ id: subItem.id });
+                    return { ...subItem, image };
+                }));
+            }
+            return item;
+        }));
 
-        console.log(data);
+        menuWithImages.forEach(item => {
+            if (item.hasOwnProperty('MenuItems')) {
+                item.MenuItems.forEach(subItem => {
+                    console.log(subItem);
+                });
+            }
+        });
+
+        console.log(menuWithImages);
+        
+
+
 
         return json({ data });
 

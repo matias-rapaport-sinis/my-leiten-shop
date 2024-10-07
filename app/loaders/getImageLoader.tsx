@@ -20,6 +20,7 @@ export const getImageLoader = async (product: { id: string }) => {
                 .reduce((data, byte) => data + String.fromCharCode(byte), '')
         );
         const imageUrl = `data:image/jpeg;base64,${imageBase64}`;
+        
         return { ...product, image: imageUrl };
     } catch (error) {
         console.error('Error fetching image:', error);
