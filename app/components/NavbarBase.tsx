@@ -34,7 +34,7 @@ const MenuItem = ({ item, index }: { item: MenuItem, index: number }) => {
 export default function NavbarBaseComponent({ title, list }) {
 
     return (
-        <nav className="navbar navbar-expand-lg bg-body-tertiary">
+        <nav className="navbar navbar-expand-lg bg-warning">
             <div className="container-fluid">
                 <a className="navbar-brand" href="#">{title}</a>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">

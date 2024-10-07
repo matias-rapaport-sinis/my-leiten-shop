@@ -14,7 +14,7 @@ export default function TemplateBase(){
     const { data } = useLoaderData<{ data: Data }>();
 
     return (
-        <div>
+        <div className="container-fluid">
             <NavbarBaseComponent title={data.Title} list={data.MenuItems} />
             <Outlet />
         </div>

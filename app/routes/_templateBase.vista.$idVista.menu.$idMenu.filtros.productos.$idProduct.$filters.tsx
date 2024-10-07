@@ -3,17 +3,17 @@ import { json, useLoaderData, useParams } from "@remix-run/react"
 import { getProductsLoader } from "~/loaders/getProductsLoader";
 
 
-export const loader = getProductsLoader; 
+export const loader = getProductsLoader;
 
 export default function Filtros() {
     const { idVista, idMenu, idProduct, filters } = useParams();
+
     const { data } = useLoaderData<{ data }>();
-
     return (
-        <div className="container">
-            <h1>{idProduct}</h1>
+        <div className="container p-5">
+            {/*    <h1>{idProduct}</h1>
             <p>{filters}</p>
-
+ */}
             <div className="row row-cols-1 row-cols-md-3 g-4">
                 {data.map((item, index) => (
                     <div className="col" key={`productCard-${index}`}>

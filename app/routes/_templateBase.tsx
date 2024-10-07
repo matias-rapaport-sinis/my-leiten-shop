@@ -9,8 +9,10 @@ export default function TemplateBase() {
         <div>
             <div className="container-fluid">
                 <div className="row">
-                    <h1>Template Base Component</h1>
-                    <Outlet />
+                    <div className="col p-0">
+                        <h1>Template Leiten shop</h1>
+                        <Outlet />
+                    </div>
                 </div>
             </div>
         </div>
