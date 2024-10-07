@@ -1,7 +1,6 @@
 
 export const getImageLoader = async (product: { id: string }) => {
     try {
-        console.log(product);
         const imageResponse = await fetch(`https://apptesting.leiten.dnscheck.com.ar/ContentSettings/GetImagen/Id/${product.id}`, {
             method: "GET",
             headers: {

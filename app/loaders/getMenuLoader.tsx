@@ -17,6 +17,9 @@ export const getMenuLoader = async ({ params }: LoaderFunctionArgs) => {
         }
 
         const data = await response.json();
+
+        console.log(data);
+
         return json({ data });
 
     } catch (error) {

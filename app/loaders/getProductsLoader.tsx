@@ -1,6 +1,8 @@
 import { json, LoaderFunctionArgs } from "@remix-run/node";
+import { getImageLoader } from "./getImageLoader";
 
 export const getProductsLoader = async ({ params }: LoaderFunctionArgs) => {
+
     const { idVista, idMenu } = params;
 
     const arrayFilter = [{
@@ -8,9 +10,9 @@ export const getProductsLoader = async ({ params }: LoaderFunctionArgs) => {
         "value": "string"
     }]
 
-
+    console.log(idVista, idMenu);
     try {
-        const response = await fetch(`https://apptesting.leiten.dnscheck.com.ar/ContentSettings/GetProductos?IdVista=1`, {
+        const response = await fetch(`https://apptesting.leiten.dnscheck.com.ar/ContentSettings/GetProductos?IdVista=${idVista}`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
@@ -26,33 +28,8 @@ export const getProductsLoader = async ({ params }: LoaderFunctionArgs) => {
         const products = await response.json();
         
         // Second fetch to get images for each product
-        const productsWithImages = await Promise.all(products['$values'].map(async (product: { id: string }) => {
-            try {
-                const imageResponse = await fetch(`https://apptesting.leiten.dnscheck.com.ar/ContentSettings/GetImagen/Id/${product.id}`, {
-                    method: "GET",
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': '12345'
-                    }
-                });
-
-                if (!imageResponse.ok) {
-                    throw new Error('Network response was not ok');
-                }
-
-                const imageBlob = await imageResponse.blob();
-                const imageArrayBuffer = await imageBlob.arrayBuffer();
-                const imageBase64 = btoa(
-                    new Uint8Array(imageArrayBuffer)
-                        .reduce((data, byte) => data + String.fromCharCode(byte), '')
-                );
-                const imageUrl = `data:image/jpeg;base64,${imageBase64}`;
-                return { ...product, image: imageUrl };
-            } catch (error) {
-                console.error('Error fetching image:', error);
-                return { ...product, image: null };
-            }
-        }));
+        const productsWithImages = await Promise.all(products['$values'].map(async (product: { id: string }) => (getImageLoader(product))));
+        
         return json({ data: productsWithImages });
 
     } catch (error) {
